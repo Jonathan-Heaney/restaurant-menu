@@ -2,19 +2,34 @@ package restaurant;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class MenuItem {
+    // Fields
     private String description;
     private double price;
     private String category;
     private boolean isNew;
     private String name;
-    private boolean isAvailable;
-    private boolean isVegan;
-    private Date dateAdded;
-    private ArrayList<String> allergens;
-    private int spiceLevel;
-    private String proteinType;
+
+    public MenuItem(String name, String description, double price, String category, boolean isNew) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.isNew = isNew;
+    }
+
+    // Methods
+    public boolean checkIfNew() {
+        return this.isNew;
+    }
+
+    public String printMenuItem() {
+        return this.toString();
+    }
+
+    // Getters/setters
     public String getDescription() {
         return description;
     }
@@ -55,56 +70,24 @@ public class MenuItem {
         this.name = name;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    // toString
+    @Override
+    public String toString() {
+        return name + ": " + description + ". $" + price;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    // toEquals
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return Double.compare(menuItem.price, price) == 0 && description.equals(menuItem.description) && category.equals(menuItem.category) && name.equals(menuItem.name);
     }
 
-    public boolean isVegan() {
-        return isVegan;
+    //hashCode
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, price, category, name);
     }
-
-    public void setVegan(boolean vegan) {
-        isVegan = vegan;
-    }
-
-    public Date getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
-    public ArrayList<String> getAllergens() {
-        return allergens;
-    }
-
-    public void setAllergens(ArrayList<String> allergens) {
-        this.allergens = allergens;
-    }
-
-    public int getSpiceLevel() {
-        return spiceLevel;
-    }
-
-    public void setSpiceLevel(int spiceLevel) {
-        this.spiceLevel = spiceLevel;
-    }
-
-    public String getProteinType() {
-        return proteinType;
-    }
-
-    public void setProteinType(String proteinType) {
-        this.proteinType = proteinType;
-    }
-
-
-
-
-
 }

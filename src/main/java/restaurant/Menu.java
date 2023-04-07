@@ -4,9 +4,33 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Menu {
+    // Fields
     private Date dateUpdated;
     private ArrayList<MenuItem> items;
-    private MenuItem mostRecent;
+
+    public Menu(ArrayList<MenuItem> items) {
+        this.items = items;
+    }
+
+
+    // Methods
+    public void addItem(MenuItem item) {
+        items.add(item);
+    }
+
+    public void removeItem(MenuItem item) {
+        items.remove(item);
+    }
+
+    public Date checkDateUpdated() {
+        return this.dateUpdated;
+    }
+
+    public String printMenu() {
+        return this.toString();
+    }
+
+    // Getters/Setters
     public Date getDateUpdated() {
         return dateUpdated;
     }
@@ -23,14 +47,10 @@ public class Menu {
         this.items = items;
     }
 
-    public MenuItem getMostRecent() {
-        return mostRecent;
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "items=" + items +
+                '}';
     }
-
-    public void setMostRecent(MenuItem mostRecent) {
-        this.mostRecent = mostRecent;
-    }
-
-
-
 }
